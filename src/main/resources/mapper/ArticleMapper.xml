@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cck.dao.ArticleDao">
+
+    <cache type="com.cck.cache.RedisCache"/>
+
+    <!--insert-->
+    <insert id="insert" parameterType="Article">
+        insert into article(title,content,summary,category_id,status,create_by,create_time)
+        values (#{title},#{content},#{summary},#{categoryId},#{status},#{createBy},#{createTime})
+    </insert>
+
+    <!--selectListByUser-->
+    <select id="selectListByUser" resultType="Article">
+        select * from article where create_by=#{createBy} and status=#{status}
+    </select>
+
+    <!--update-->
+    <update id="update" parameterType="Article">
+        update article set title=#{title}, summary=#{summary}, content=#{content}, update_by=#{updateBy}, update_time=#{updateTime} where id=#{id}
+    </update>
+
+    <!--delete-->
+    <delete id="delete" parameterType="Article">
+        delete from article where id=#{id}
+    </delete>
+
+    <!--updateStatus-->
+    <update id="updateStatus" parameterType="Article">
+        update article set status=#{status}, update_by=#{updateBy}, update_time=#{updateTime} where id=#{id}
+    </update>
+
+    <!--selectList-->
+    <select id="selectList" resultType="Article">
+        select * from article
+    </select>
+
+    <!--selectListCategory-->
+    <select id="selectListCategory" resultType="Article">
+        select * from article where category_id=#{categoryId}
+    </select>
+</mapper>

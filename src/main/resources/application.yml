@@ -1,0 +1,25 @@
+server:
+  port: 8550                  #服务端口
+
+spring:
+  redis:
+    port: 6379                #端口
+    host: localhost           #ip
+    database: 0               #工作区间
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/newspaper?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml          #mapper文件地址
+  type-aliases-package: com.cck.domain.entity              #返回类型
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    com.cck.dao: debug                               #日志

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cck.dao.UserDao">
+
+    <cache type="com.cck.cache.RedisCache"/>
+    <!--findByName-->
+    <select id="findByName" resultType="User">
+        select * from user where username=#{username}
+    </select>
+
+    <!--insert-->
+    <insert id="insert" parameterType="User">
+        insert into user(username,password,phone,create_time) values (#{username},#{password},#{phone},#{createTime})
+    </insert>
+
+    <!--selectById-->
+    <select id="selectById" parameterType="java.lang.Integer" resultType="User">
+        select * from user where id=#{id}
+    </select>
+
+    <!--update-->
+    <update id="update" parameterType="User">
+        update user set username=#{username}, phone=#{phone}, update_time=#{updateTime} where id=#{id}
+    </update>
+
+    <!--changePwd-->
+    <update id="changePwd" parameterType="User">
+        update user set password=#{password}, update_time=#{updateTime}  where id=#{id}
+    </update>
+    
+    <!--注册角色信息-->
+    <insert id="registerPermissions" >
+        insert into userByRole(user_id,role_id) values (#{userId},#{roleId})
+    </insert>
+</mapper>
