@@ -13,4 +13,4 @@ jdk 1.8
 
 springboot 2.2.5RELEASE
 
-mysql 8.0。30
+mysql 8.0.30
