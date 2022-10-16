@@ -12,6 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 /*@SpringBootTest
@@ -40,5 +43,14 @@ public class test {
     public void t2(){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         System.out.println(bCryptPasswordEncoder.matches("zhangsan", "$2a$10$oo32XasOKNq5zqzVN8EbDux0WY8kyFWWbGjUA9U2IxkkMJSdjHpW2"));
+    }
+
+    @Test
+    public void t3(){
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss");
+        String format = simpleDateFormat.format(date);
+        System.out.println(format);
     }
 }

@@ -30,6 +30,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    private static final String[] URLLIST = new String[]{
+            "/login",
+            "/user/register",
+            "/user/findName",
+            "/swagger-ui.html",
+            "/v2/**",
+            "/v3/**",
+            "/webjars/**",
+            "/swagger-resources/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -43,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //请求配置
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login","/register")
+                .antMatchers(URLLIST)
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

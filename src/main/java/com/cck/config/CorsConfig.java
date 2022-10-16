@@ -20,6 +20,6 @@ public class CorsConfig implements WebMvcConfigurer {
                 //允许的header属性
                 .allowedHeaders("*")
                 //跨域允许时间
-                .maxAge(3600);
+                .maxAge(18000);
     }
 }

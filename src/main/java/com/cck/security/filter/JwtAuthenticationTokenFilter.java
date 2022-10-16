@@ -34,7 +34,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (!JwtUtils.verifyToken(token))throw new RuntimeException("token不合法");
         String id = JwtUtils.getValue(token, "id");
         //从redis中获取用户信息
-        LoginUser loginUser = (LoginUser) RedisUtils.getRedisTemplate().opsForValue().get("login" + id);
+        LoginUser loginUser = (LoginUser) RedisUtils.getRedisTemplate().opsForValue().get("login:" + id);
         if (Objects.isNull(loginUser))throw new RuntimeException("用户未登录");
         //存入SecurityContextHolder 该用户已认证
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser,null,loginUser.getAuthorities());
